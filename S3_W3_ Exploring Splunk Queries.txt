@@ -1,0 +1,75 @@
+Downloading Splunk Enterprise
+
+Splunk Enterprise can be downloaded from the following link. Please download version 6.2.2.
+https://www.splunk.com/page/previous_releases
+We recommend installing Splunk on your computer and not on the Cloudera Virtual Machine. After this reading are videos describing how to install Splunk Enterprise for Windows and Linux. 
+Exploring Splunk Queries
+
+By the end of this activity, you will be able to:
+Import CSV files into Splunk.
+Query, filter, and plot data.
+Perform statistical calculations.
+NOTE: Steps 4 and 5 below contain examples using the 'sort' command which are not covered in the video lecture but which will be covered in the accompanying quiz.
+The Census CSV data used in this activity can be downloaded here:
+census.zip
+After downloading, unzip the file.
+
+Step 1. Login to Splunk. Open a web browser and navigate to localhost:8000:
+
+Next, login to Splunk by enter admin and the default password changeme:
+
+
+Step 2. Import census data. Let's import the census data CSV file to Splunk. First, click on Settings in the top right, then click on Add Data: 
+
+Next, click on Upload:
+
+Click on Select File:
+
+Navigate to census.csv, and select it. Then click Next>:
+
+On the left, make sure the Source type is csv:
+
+If the Source type is not csv, click on Source type, go down to Structured, and select csv:
+
+The table on the right is a preview of the CSV data. It shows the values for different fields:
+
+Next, click on Next, click on Review, and then click Submit. Splunk will say the file is successfully uploaded:
+
+
+Step 3. View data. Click on Start Searching:
+
+Splunk will enter a default query in the search box to show the data we just imported:
+
+This query shows all the data from the census.csv file and whose data type is CSV. In general, we can use source= to query from different file names, and sourcetype= to query from different formats.
+The table shows the results matching this query:
+
+
+Step 4. Filtering for specific values. We can filter the results by looking for a field with a specific value. For example, we can find the entries where the state is California:
+
+The field STNAME contains the name of the state, and the above query only shows the results where the state is California. We can use an OR to search for multiple values on the same field:
+
+We can search multiple fields with specific values by adding them to query. For example, let's search for state name California and 2010 population greater than one million people:
+
+We can filter our results to just show a single column. For example, let's just show the county names of the previous query:
+
+The | (pipe) is the syntax for sending the results from one query to the next, and the table command creates a table using only the specified column name(s).
+We can sort the results based on any of the fields, such as population, and order them in either ascending or descending order. The image below shows an example of a search for all items with a population greater than 100000, sorts the results in descending order, and creates a table containing the population and state name. [To sort in ascending order you would replace "desc" with "asc"].
+
+Instead of using "desc" you can use a dash before the sorting field, e.g. "...| sort -CENSUS2010POP | table ..." for the above query. 
+We can view plots of search results by clicking on the Visualization tab. For example, if we use our last query and add the 2010 population value to the table:
+
+We can click on the Visualization tab to see a chart of the results:
+
+
+Step 5. Perform statistical calculations. The Splunk stats command is used to perform statistical calculations on the data. Let's count the results where the state is California:
+
+We can sort based on the count by adding "| sort count" to the above query. This would sort in ascending order. if we want to sort in descending order we would use " | sort -count". 
+Next, let's compute the total 2010 population for California:
+
+Finally, let's compute the average 2010 population for California:
+
+Optional: Instructions for Splunk Pivot Tutorial
+
+The next lecture provides a tutorial for creating Pivot reports in Splunk. Before you can start this tutorial, the Buttercup Games data must be loaded into Splunk and the Buttercup Data model must be created. You can find the instructions for how to do these here: 
+http://docs.splunk.com/Documentation/Splunk/6.2.2/PivotTutorial/WelcometothePivotTutorial
+[UPDATE: the UI for Splunk may have changed since this lesson was created. As a result, this Reading and Lecture is optional. We plan to update the lesson as time permits.]
