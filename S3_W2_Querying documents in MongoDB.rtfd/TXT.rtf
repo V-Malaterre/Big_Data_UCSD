@@ -1,0 +1,280 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2511
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Bold;\f1\froman\fcharset0 Times-Roman;\f2\froman\fcharset0 Times-Italic;
+\f3\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11905\paperh16837\margl1133\margr1133\margb1133\margt1133
+\deftab720
+\pard\pardeftab720\sl440\sa298\partightenfactor0
+
+\f0\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\up0 \nosupersub \ulnone Querying Documents in MongoDB\
+\pard\pardeftab720\sl280\sa480\partightenfactor0
+
+\f1\b0\fs24 \cf2 \
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 By the end of this activity, you will be able to:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 \up0 \nosupersub \ulnone {\listtext	1.	}\expnd0\expndtw0\kerning0
+\up0 \nosupersub \ulnone Find documents in MongoDB with specific field values.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \up0 \nosupersub \ulnone {\listtext	2.	}\expnd0\expndtw0\kerning0
+\up0 \nosupersub \ulnone Filter the results returned by MongoDB queries.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \up0 \nosupersub \ulnone {\listtext	3.	}\expnd0\expndtw0\kerning0
+\up0 \nosupersub \ulnone Count documents in a MongoDB collection and returned by queries. \
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 \
+Step 1. 
+\f0\b Start MongoDB server and MongoDB shell
+\f1\b0 . Open a terminal window by clicking on the square black box on the top left of the screen.\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic pastedGraphic.png \width5680 \height1340 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 Next, change to the 
+\f2\i mongodb
+\f1\i0  directory, and start the server:\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f3 \cf2 \
+\
+\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+
+\f1 \cf2 The arguments 
+\f2\i --dbpath db
+\f1\i0  specify that the directory 
+\f2\i db
+\f1\i0  should be used for the MongoDB directory for datafiles. After starting the MongoDB server, you will see the following lines indicating that the server is running:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 1__#$!@%!#__pastedGraphic.png \width16500 \height1060 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 Next, let's run the MongoDB shell so that we can query the server. Open a new terminal shell window, change to the 
+\f2\i mongodb
+\f1\i0  directory, and start the shell:\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f3 \cf2 \
+\
+\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+
+\f1 \cf2 \
+Step 2. 
+\f0\b Show Databases and Collections
+\f1\b0 . Run the 
+\f2\i show dbs
+\f1\i0  command to see the databases:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 2__#$!@%!#__pastedGraphic.png \width3320 \height1680 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 The database named 
+\f2\i sample
+\f1\i0  has been created and loaded with Twitter JSON data. Let's switch to that database by running the 
+\f2\i use
+\f1\i0  command:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 3__#$!@%!#__pastedGraphic.png \width3400 \height660 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 We can see the collections in the 
+\f2\i sample
+\f1\i0  database by running 
+\f2\i show collections
+\f1\i0 :\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 4__#$!@%!#__pastedGraphic.png \width3380 \height920 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 The Twitter data is stored in the 
+\f2\i users
+\f1\i0  collection. We can run 
+\f2\i db.users.count()
+\f1\i0  to count the number of documents:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 5__#$!@%!#__pastedGraphic.png \width2940 \height660 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 \
+Step 3. 
+\f0\b Look at document and find distinct values
+\f1\b0 . We can examine the contents of one of the documents by running 
+\f2\i db.users.findOne():
+\f1\i0 \
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 6__#$!@%!#__pastedGraphic.png \width17280 \height6360 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 The document has several fields, e.g., 
+\f2\i user_name, retweet_count, tweet_ID, etc.
+\f1\i0 , and nested fields under 
+\f2\i user, 
+\f1\i0 e.g., 
+\f2\i CreatedAt, UserId, Location
+\f1\i0 , etc.\
+We can find the distinct values for a specific field by using the 
+\f2\i distinct()
+\f1\i0  command. For example, let's find the distinct values for 
+\f2\i user_name
+\f1\i0 :\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 7__#$!@%!#__pastedGraphic.png \width4880 \height2600 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 \
+Step 4. 
+\f0\b Search for specific field value
+\f1\b0 . We can search for fields with a specific value using the 
+\f2\i find()
+\f1\i0  command. For example, let's search for 
+\f2\i user_name
+\f1\i0  with the value 
+\f2\i ActionSportsJax
+\f1\i0 :\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 8__#$!@%!#__pastedGraphic.png \width13360 \height1920 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 By appending 
+\f2\i .pretty()
+\f1\i0  to the end of the find command, the results will be formatted:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 9__#$!@%!#__pastedGraphic.png \width8800 \height3180 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 \
+Step 5. 
+\f0\b Filter fields returned by query
+\f1\b0 .
+\f2\i  
+\f1\i0 We can specify a second argument to the 
+\f2\i find()
+\f1\i0  command to only show specific field(s) in the result. Let's repeat the previous search, but only show the 
+\f2\i tweet_ID
+\f1\i0  field:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 10__#$!@%!#__pastedGraphic.png \width12480 \height680 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 The 
+\f2\i _id
+\f1\i0  field is primary key for every document, and we can remove it from the results with the following filter:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 11__#$!@%!#__pastedGraphic.png \width10620 \height620 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 \
+Step 6. 
+\f0\b Perform regular expression search
+\f1\b0 . MongoDB also supports searching documents with regular expressions. If we search for the value 
+\f2\i FIFA
+\f1\i0  in the 
+\f2\i tweet_text
+\f1\i0  field, there are no results:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 12__#$!@%!#__pastedGraphic.png \width5640 \height680 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 However, if we search using a regular expression, there are many results:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 13__#$!@%!#__pastedGraphic.png \width12060 \height3520 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 The difference between the queries is that the first searched for where the 
+\f2\i tweet_text
+\f1\i0  field value was exactly equal to 
+\f2\i FIFA
+\f1\i0 , and the second searched for where the field value contained 
+\f2\i FIFA
+\f1\i0 .\
+We can append 
+\f2\i .count()
+\f1\i0  to the command to count the number of results:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 14__#$!@%!#__pastedGraphic.png \width6800 \height600 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 \
+Step 7. 
+\f0\b Search using text index
+\f1\b0 . A text index can be created to speed up searches and allows advanced searches with 
+\f2\i $text
+\f1\i0 . Let's create the index using 
+\f2\i createIndex():
+\f1\i0 \
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 15__#$!@%!#__pastedGraphic.png \width7640 \height2600 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 The argument 
+\f2\i tweet_text
+\f1\i0  specifies the field on which to create the index.\
+Next, we can use the 
+\f2\i $text 
+\f1\i0 operator to search the collection. We can perform the previous query to find the documents containing 
+\f2\i FIFA:
+\f1\i0 \
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 16__#$!@%!#__pastedGraphic.png \width8240 \height620 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 We can also search for documents not containing a specific value. For example, let's search for documents containing 
+\f2\i FIFA, 
+\f1\i0 but not 
+\f2\i Texas:
+\f1\i0 \
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 17__#$!@%!#__pastedGraphic.png \width9340 \height600 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 \
+Step 8. 
+\f0\b Search using operators
+\f1\b0 . MongoDB can also search for field values matching a specific criteria. For example, we can find where the 
+\f2\i tweet_mentioned_count
+\f1\i0  is greater than six:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 18__#$!@%!#__pastedGraphic.png \width11560 \height4180 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 The 
+\f2\i $gt
+\f1\i0  operator search for values greater than a specific value. We can use the 
+\f2\i $where
+\f1\i0  command to compare between fields in the same document. For example, the following searches for 
+\f2\i tweet_mentioned_count
+\f1\i0  is greater than 
+\f2\i tweet_followers_count
+\f1\i0 :\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 19__#$!@%!#__pastedGraphic.png \width14440 \height660 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 Note that the field names for 
+\f2\i $where
+\f1\i0  are required to be prefixed with 
+\f2\i this, 
+\f1\i0 which represent the document.\
+We can combine multiple searches by using 
+\f2\i $and
+\f1\i0 . For example, let's search for 
+\f2\i tweet_text
+\f1\i0  containing 
+\f2\i FIFA
+\f1\i0  and 
+\f2\i tweet_mentioned_count
+\f1\i0  greater than four:\
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 {{\NeXTGraphic 20__#$!@%!#__pastedGraphic.png \width14440 \height640 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\sl280\sa240\partightenfactor0
+\cf2 \
+When you are done querying MongoDB, run 
+\f2\i exit
+\f1\i0  in the MongoDB shell, and 
+\f2\i Control-C 
+\f1\i0 in the terminal window running the server. \
+}
